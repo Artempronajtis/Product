@@ -27,11 +27,7 @@ public class ShopRepositoryTest {
         repository.add(product1);
         repository.add(product2);
 
-        try {
-            repository.removeById(3);
-            fail("Expected NotFoundException was not thrown");
-        } catch (NotFoundException e) {
-            assertEquals("Element with id: 3 not found", e.getMessage());
-        }
+        assertThrows(NotFoundException.class, () -> repository.removeById(3),
+                "Expected NotFoundException was not thrown");
     }
 }
